@@ -1,0 +1,310 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Contact {
+  id_contact: Int!
+  name: String!
+  phone: String!
+  email: String!
+  position: String!
+  type: String!
+  auth_id: Int!
+  id_supplier: Int!
+  supplier: Supplier!
+}
+
+type Supplier {
+  id_supplier: Int!
+  rut: String!
+  business_name: String!
+  business_line: String!
+  brand_name: String!
+  additional_info: String
+  link: String
+  size: String
+  sales: String
+  isActive: Boolean!
+  isDeleted: Boolean!
+  created_at: DateTime!
+  modified_at: DateTime!
+  slug: String!
+  ID_company: Int!
+  ID_authorizations: Int!
+  contacts: [Contact!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type SupplierPagination {
+  data: [Supplier!]!
+  count: Int!
+}
+
+type CategoryType {
+  id: Int!
+  name: String!
+}
+
+type Category {
+  id: Int!
+  category: String!
+  categoryTypeId: Int!
+  categoryType: CategoryType!
+}
+
+type SupplierSubcategory {
+  id_supplier_subcategory: Int!
+  id_category: Int!
+  id_subcategory: Int!
+  id_supplier: Int!
+  supplier: Supplier!
+}
+
+type Subcategory {
+  id_subcategory: Int!
+  subcategory: String!
+  id_category: Int!
+  category: Category!
+}
+
+type Authorizations {
+  id_authorizations: Int!
+  statement_of_truth: Boolean!
+  notifications: Boolean!
+  data_management: Boolean!
+  terms_and_conditions: Boolean!
+  created_at: DateTime!
+  modified_at: DateTime!
+}
+
+type TypeCriteria {
+  id_type_criteria: Int!
+  type: String!
+}
+
+type Criteria {
+  id_criteria: Int!
+  id_type_criteria: Int!
+  title: String!
+  description: String!
+  standard: String!
+  created_at: DateTime!
+  modified_at: DateTime!
+}
+
+type ComplianceLevel {
+  id_compliance_level: Int!
+  level: String!
+  description: String
+}
+
+type Query {
+  suppliers: [Supplier!]!
+  supplier(id: Int!): Supplier!
+  suppliersWithPagination(take: Int!, skip: Int!, field: String!, order: String!, q: String): SupplierPagination!
+  categoryTypes: [CategoryType!]!
+  categoryType(id: Int!): CategoryType!
+  categories: [Category!]!
+  category(id: Int!): Category!
+  supplierSubcategories: [SupplierSubcategory!]!
+  supplierSubcategory(id: Int!): SupplierSubcategory!
+  subcategories: [Subcategory!]!
+  subcategory(id: Int!): Subcategory!
+  authorizations: [Authorizations!]!
+  authorization(id: Int!): Authorizations!
+  contacts: [Contact!]!
+  contact(id: Int!): Contact!
+  contactsBySupplier(id_supplier: Int!): [Contact!]!
+  typeCriterias: [TypeCriteria!]!
+  typeCriteria(id_type_criteria: Int!): TypeCriteria!
+  criteria: [Criteria!]!
+  criteriaById(id_criteria: Int!): Criteria!
+  complianceLevels: [ComplianceLevel!]!
+  complianceLevel(id: Int!): ComplianceLevel!
+}
+
+type Mutation {
+  createSupplier(createSupplierInput: CreateSupplierInput!): Supplier!
+  updateSupplier(updateSupplierInput: UpdateSupplierInput!): Supplier!
+  removeSupplier(id: Int!): Int!
+  createCategoryType(name: String!): CategoryType!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  removeCategory(id: Int!): Int!
+  createSupplierSubcategory(createSupplierSubcategoryInput: CreateSupplierSubcategoryInput!): SupplierSubcategory!
+  updateSupplierSubcategory(updateSupplierSubcategoryInput: UpdateSupplierSubcategoryInput!): SupplierSubcategory!
+  removeSupplierSubcategory(id: Int!): Int!
+  createSubcategory(createSubcategoryInput: CreateSubcategoryInput!): Subcategory!
+  updateSubcategory(updateSubcategoryInput: UpdateSubcategoryInput!): Subcategory!
+  removeSubcategory(id: Int!): Int!
+  createAuthorizations(createAuthorizationsInput: CreateAuthorizationsInput!): Authorizations!
+  updateAuthorizations(updateAuthorizationsInput: UpdateAuthorizationsInput!): Authorizations!
+  removeAuthorizations(id: Int!): Int!
+  createContact(createContactInput: CreateContactInput!): Contact!
+  updateContact(updateContactInput: UpdateContactInput!): Contact!
+  removeContact(id: Int!): Int!
+  createTypeCriteria(createTypeCriteriaInput: CreateTypeCriteriaInput!): TypeCriteria!
+  updateTypeCriteria(updateTypeCriteriaInput: UpdateTypeCriteriaInput!): TypeCriteria!
+  removeTypeCriteria(id_type_criteria: Int!): Int!
+  createCriteria(createCriteriaInput: CreateCriteriaInput!): Criteria!
+  updateCriteria(updateCriteriaInput: UpdateCriteriaInput!): Criteria!
+  removeCriteria(id_criteria: Int!): Int!
+  createComplianceLevel(createComplianceLevelInput: CreateComplianceLevelInput!): ComplianceLevel!
+  updateComplianceLevel(updateComplianceLevelInput: UpdateComplianceLevelInput!): ComplianceLevel!
+  removeComplianceLevel(id: Int!): Int!
+}
+
+input CreateSupplierInput {
+  id_supplier: Int
+  rut: String!
+  business_name: String!
+  business_line: String!
+  brand_name: String!
+  additional_info: String
+  link: String
+  size: String
+  sales: String
+  isActive: Boolean!
+  isDeleted: Boolean!
+  created_at: DateTime
+  modified_at: DateTime
+  slug: String!
+  ID_company: Int!
+  ID_authorizations: Int!
+}
+
+input UpdateSupplierInput {
+  id_supplier: Int!
+  rut: String
+  business_name: String
+  business_line: String
+  brand_name: String
+  additional_info: String
+  link: String
+  size: String
+  sales: String
+  isActive: Boolean
+  isDeleted: Boolean
+  created_at: DateTime
+  modified_at: DateTime
+  slug: String
+  ID_company: Int
+  ID_authorizations: Int
+}
+
+input CreateCategoryInput {
+  id: Int
+  category: String!
+  categoryTypeId: Int!
+}
+
+input UpdateCategoryInput {
+  id: Int!
+  category: String
+  categoryTypeId: Int
+}
+
+input CreateSupplierSubcategoryInput {
+  id_category: Int!
+  id_subcategory: Int!
+  id_supplier: Int!
+}
+
+input UpdateSupplierSubcategoryInput {
+  id_supplier_subcategory: Int!
+  id_category: Int
+  id_subcategory: Int
+  id_supplier: Int
+}
+
+input CreateSubcategoryInput {
+  subcategory: String!
+  id_category: Int!
+}
+
+input UpdateSubcategoryInput {
+  id_subcategory: Int!
+  subcategory: String
+  id_category: Int
+}
+
+input CreateAuthorizationsInput {
+  id_authorizations: Int
+  statement_of_truth: Boolean!
+  notifications: Boolean!
+  data_management: Boolean!
+  terms_and_conditions: Boolean!
+  created_at: DateTime!
+  modified_at: DateTime!
+}
+
+input UpdateAuthorizationsInput {
+  id_authorizations: Int!
+  statement_of_truth: Boolean
+  notifications: Boolean
+  data_management: Boolean
+  terms_and_conditions: Boolean
+  created_at: DateTime
+  modified_at: DateTime
+}
+
+input CreateContactInput {
+  id_contact: Int
+  name: String!
+  phone: String!
+  email: String!
+  position: String!
+  type: String!
+  auth_id: Int!
+  id_supplier: Int!
+}
+
+input UpdateContactInput {
+  id_contact: Int!
+  name: String
+  phone: String
+  email: String
+  position: String
+  type: String
+  auth_id: Int
+  id_supplier: Int
+}
+
+input CreateTypeCriteriaInput {
+  type: String!
+}
+
+input UpdateTypeCriteriaInput {
+  type: String
+  id_type_criteria: Int!
+}
+
+input CreateCriteriaInput {
+  id_type_criteria: Int!
+  title: String!
+  description: String!
+  standard: String!
+}
+
+input UpdateCriteriaInput {
+  id_type_criteria: Int
+  title: String
+  description: String
+  standard: String
+  id_criteria: Int!
+}
+
+input CreateComplianceLevelInput {
+  level: String!
+  description: String
+}
+
+input UpdateComplianceLevelInput {
+  level: String
+  description: String
+  id_compliance_level: Int!
+}
