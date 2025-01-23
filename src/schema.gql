@@ -102,6 +102,20 @@ type ComplianceLevel {
   description: String
 }
 
+type SupplierCriteria {
+  id_supplier_criteria: Int!
+  id_criteria: Int!
+  criteria: Criteria!
+  id_compliance_level: Int!
+  complianceLevel: ComplianceLevel!
+  id_checkerfiles: Int!
+  detail: String!
+  datasource: String!
+  updated_at: DateTime!
+  id_supplier: Int!
+  supplier: Supplier!
+}
+
 type Query {
   suppliers: [Supplier!]!
   supplier(id: Int!): Supplier!
@@ -125,6 +139,8 @@ type Query {
   criteriaById(id_criteria: Int!): Criteria!
   complianceLevels: [ComplianceLevel!]!
   complianceLevel(id: Int!): ComplianceLevel!
+  supplierCriterias: [SupplierCriteria!]!
+  supplierCriteria(id: Int!): SupplierCriteria!
 }
 
 type Mutation {
@@ -156,6 +172,9 @@ type Mutation {
   createComplianceLevel(createComplianceLevelInput: CreateComplianceLevelInput!): ComplianceLevel!
   updateComplianceLevel(updateComplianceLevelInput: UpdateComplianceLevelInput!): ComplianceLevel!
   removeComplianceLevel(id: Int!): Int!
+  createSupplierCriteria(createSupplierCriteriaInput: CreateSupplierCriteriaInput!): SupplierCriteria!
+  updateSupplierCriteria(updateSupplierCriteriaInput: UpdateSupplierCriteriaInput!): SupplierCriteria!
+  removeSupplierCriteria(id: Int!): Int!
 }
 
 input CreateSupplierInput {
@@ -307,4 +326,23 @@ input UpdateComplianceLevelInput {
   level: String
   description: String
   id_compliance_level: Int!
+}
+
+input CreateSupplierCriteriaInput {
+  id_criteria: Int!
+  id_compliance_level: Int!
+  id_checkerfiles: Int!
+  detail: String!
+  datasource: String!
+  id_supplier: Int!
+}
+
+input UpdateSupplierCriteriaInput {
+  id_supplier_criteria: Int!
+  id_criteria: Int
+  id_compliance_level: Int
+  id_checkerfiles: Int
+  detail: String
+  datasource: String
+  id_supplier: Int
 }

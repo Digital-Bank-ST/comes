@@ -16,6 +16,10 @@ import { ContactModule } from './contact/contact.module';
 import { TypeCriteriaModule } from './type_criteria/type_criteria.module';
 import { CriteriaModule } from './criteria/criteria.module';
 import { ComplianceLevelModule } from './compliance_level/compliance_level.module';
+import { SupplierCriteriaModule } from './supplier_criteria/supplier_criteria.module';
+import { CheckersFilesModule } from './checkers_files/checkers_files.module';
+import { CompanyModule } from './company/company.module';
+import { SupplierCompanyModule } from './supplier_company/supplier_company.module';
 
 @Module({
   imports: [
@@ -51,6 +55,10 @@ import { ComplianceLevelModule } from './compliance_level/compliance_level.modul
     TypeCriteriaModule,
     CriteriaModule,
     ComplianceLevelModule,
+    SupplierCriteriaModule,
+    CheckersFilesModule,
+    CompanyModule,
+    SupplierCompanyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

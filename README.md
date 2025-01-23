@@ -749,7 +749,80 @@ mutation {
 }
 
 ```
-
+# QUERY Supplier_criteria
+Crear un nuevo SupplierCriteria
+```bash
+mutation {
+  createSupplierCriteria(createSupplierCriteriaInput: {
+    id_criteria: 1,
+    id_compliance_level: 2,
+    id_checkerfiles: 3,
+    detail: "Detalle del criterio del proveedor",
+    datasource: "externo",
+    id_supplier: 4
+  }) {
+    id_supplier_criteria
+    id_criteria
+    id_compliance_level
+    id_checkerfiles
+    detail
+    datasource
+    updated_at
+    id_supplier
+  }
+}
+Obtener todos los SupplierCriteria
+bash
+query {
+  supplierCriterias {
+    id_supplier_criteria
+    id_criteria
+    id_compliance_level
+    id_checkerfiles
+    detail
+    datasource
+    updated_at
+    id_supplier
+  }
+}
+Obtener un SupplierCriteria por ID
+bash
+query {
+  supplierCriteria(id: 1) {
+    id_supplier_criteria
+    id_criteria
+    id_compliance_level
+    id_checkerfiles
+    detail
+    datasource
+    updated_at
+    id_supplier
+  }
+}
+Actualizar un SupplierCriteria
+bash
+mutation {
+  updateSupplierCriteria(updateSupplierCriteriaInput: {
+    id_supplier_criteria: 1,
+    detail: "Detalle actualizado del criterio del proveedor",
+    datasource: "interno"
+  }) {
+    id_supplier_criteria
+    id_criteria
+    id_compliance_level
+    id_checkerfiles
+    detail
+    datasource
+    updated_at
+    id_supplier
+  }
+}
+Eliminar un SupplierCriteria
+bash
+mutation {
+  removeSupplierCriteria(id: 1)
+} 
+```
 # Query Base para compliance-level
 ```bash
 # insert
@@ -816,3 +889,22 @@ npm run test:cov
 ```
 
 
+
+# GIT 
+
+```bash
+git status
+```
+
+```bash
+git add .
+```
+
+```bash
+git commit -m "Comentario para commit"
+```
+
+```bash
+git push
+```
+# 

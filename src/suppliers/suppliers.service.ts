@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Like, Repository } from 'typeorm';
 import { Supplier } from './supplier.entity';
@@ -12,7 +12,14 @@ export class SuppliersService {
     private supplierRepository: Repository<Supplier>,
   ) {}
 
-  create(createSupplierInput: CreateSupplierInput): Promise<Supplier> {
+  async create(createSupplierInput: CreateSupplierInput): Promise<Supplier> {
+
+    const existingSupplier = await this.supplierRepository.findOne({
+      where: { rut: createSupplierInput.rut },
+    });
+    if (existingSupplier) {
+      throw new ConflictException('A supplier with this RUT already exists');
+    }
     const newSupplier = this.supplierRepository.create(createSupplierInput);
     return this.supplierRepository.save(newSupplier);
   }
